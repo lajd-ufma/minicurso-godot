@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -400.0
 
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+var screen_limit_horizontal:int
 
 var direction:int = 0
 var is_jumping:bool = false
@@ -21,7 +22,8 @@ func set_animation():
 	animation_player.play(anim)
 	
 func _ready() -> void:
-	print("iniciou a cena")
+	screen_limit_horizontal = $Camera2D.limit_right-32
+	print(screen_limit_horizontal)
 	
 func _process(delta: float) -> void:
 	set_animation()
@@ -47,7 +49,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	position.x = clamp(position.x,0,screen_limit_horizontal)
 	move_and_slide()
 
 

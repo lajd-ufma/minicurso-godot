@@ -1,2 +1,4 @@
 res://world.tscn
 res://player.gd
+res://moving_platform.tscn
+res://moving_platform.gd

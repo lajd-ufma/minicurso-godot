@@ -1,6 +1,11 @@
+CollisionShape2D
+Sprite2D
+AnimatableBody2D
+Parallax2D
+Node2D
+Camera2D
+TileMapLayer
 AnimationPlayer
 ColorRect
-CollisionShape2D
 StaticBody2D
-Sprite2D
 CharacterBody2D
