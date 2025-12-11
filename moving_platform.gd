@@ -12,7 +12,7 @@ func _ready() -> void:
 	move_platform()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	animatable_body_2d.position = animatable_body_2d.position.lerp(follow, 0.5)
 
 func move_platform():

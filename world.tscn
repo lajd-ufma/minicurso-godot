@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://byaahtqvipkrh"]
+[gd_scene load_steps=14 format=4 uid="uid://byaahtqvipkrh"]
 
 [ext_resource type="Texture2D" uid="uid://bnidqtdwa4xfj" path="res://assets/Terrain/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="3_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://bwepa6jlya8gk" path="res://assets/Terrain/1 - Grassland/Background parts/2 - Hills.png" id="4_ioo17"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://udj562gf7n42" path="res://player.tscn" id="7_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://dv8rcggqe8ffh" path="res://assets/Terrain/1 - Grassland/Background parts/5 - Sky_color.png" id="7_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://cihv6mu6acsv4" path="res://moving_platform.tscn" id="8_gbfbk"]
+[ext_resource type="PackedScene" uid="uid://c23bok28vx3p8" path="res://coin.tscn" id="9_ioo17"]
+[ext_resource type="PackedScene" uid="uid://ci3ma1dklykn5" path="res://mushroom.tscn" id="10_wse8f"]
+[ext_resource type="PackedScene" uid="uid://bt7sw6bnyn7bf" path="res://portal.tscn" id="11_ic0uy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pkg7o"]
 texture = ExtResource("6_dwbse")
@@ -132,6 +135,7 @@ repeat_size = Vector2(576, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="background/hills"]
+visible = false
 position = Vector2(288, 352)
 scale = Vector2(2, 2)
 texture = ExtResource("4_ioo17")
@@ -163,7 +167,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_ic0uy")
 
 [node name="player" parent="." instance=ExtResource("7_gbfbk")]
-position = Vector2(124, 233)
+position = Vector2(208, 560)
+collision_mask = 15
 
 [node name="moving_platform" parent="." instance=ExtResource("8_gbfbk")]
 position = Vector2(712, 472)
@@ -171,3 +176,24 @@ position = Vector2(712, 472)
 [node name="moving_platform2" parent="." instance=ExtResource("8_gbfbk")]
 position = Vector2(832, 528)
 move_horizontal = false
+
+[node name="coins" type="Node2D" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource("9_ioo17")]
+position = Vector2(832, 480)
+
+[node name="coin2" parent="coins" instance=ExtResource("9_ioo17")]
+position = Vector2(832, 430)
+
+[node name="coin3" parent="coins" instance=ExtResource("9_ioo17")]
+position = Vector2(832, 380)
+
+[node name="coin4" parent="coins" instance=ExtResource("9_ioo17")]
+position = Vector2(710, 424)
+
+[node name="mushroom" parent="." instance=ExtResource("10_wse8f")]
+position = Vector2(352, 576)
+
+[node name="portal" parent="." instance=ExtResource("11_ic0uy")]
+position = Vector2(344, 0)
+next_scene = "res://world_02.tscn"

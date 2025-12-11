@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://udj562gf7n42"]
+[gd_scene load_steps=15 format=3 uid="uid://udj562gf7n42"]
 
 [ext_resource type="Script" uid="uid://bccu8dtpqu8ga" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://f1sqr6udkqke" path="res://assets/Main Characters/Lil Wiz/Idle_(32 x 32).png" id="2_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://cw8mss1nwk733" path="res://assets/Main Characters/Lil Wiz/Falling_(32 x 32).png" id="3_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dobtnl7ddlx57" path="res://assets/Main Characters/Lil Wiz/Jumping_(32 x 32).png" id="4_dw050"]
 [ext_resource type="Texture2D" uid="uid://cudmet2lc1gj7" path="res://assets/Main Characters/Lil Wiz/Running_(32 x 32).png" id="5_b26j0"]
+[ext_resource type="Texture2D" uid="uid://b1w4q2tfn7cpm" path="res://assets/Gold Coin/01.png" id="6_2hs0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
 size = Vector2(24, 28)
@@ -221,18 +222,20 @@ _data = {
 &"running": SubResource("Animation_aqk2v")
 }
 
+[sub_resource type="Theme" id="Theme_sweqy"]
+default_font_size = 32
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_sweqy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(23, 328)
 scale = Vector2(2, 2)
 texture = ExtResource("2_2hs0m")
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(23, 342)
+position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_f3sb7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -247,5 +250,33 @@ limit_top = 0
 limit_right = 2048
 limit_bottom = 720
 editor_draw_limits = true
+
+[node name="r_spell_point" type="Marker2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="l_spell_point" type="Marker2D" parent="."]
+position = Vector2(-16, 16)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ui"]
+
+[node name="coins" type="Label" parent="ui/CanvasLayer"]
+offset_left = 944.0
+offset_top = 40.0
+offset_right = 984.0
+offset_bottom = 85.0
+theme = SubResource("Theme_sweqy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "0x"
+
+[node name="Sprite2D" type="Sprite2D" parent="ui/CanvasLayer"]
+position = Vector2(904, 64)
+scale = Vector2(3, 3)
+texture = ExtResource("6_2hs0m")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

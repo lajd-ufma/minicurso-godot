@@ -1,4 +1,14 @@
 res://world.tscn
+res://world.gd
 res://player.gd
-res://moving_platform.tscn
-res://moving_platform.gd
+res://coin.tscn
+res://coin.gd
+res://player.tscn
+res://mushroom.tscn
+res://mushroom.gd
+res://portal.gd
+res://portal.tscn
+res://world_02.tscn
+res://Global.gd
+res://fire_flower.tscn
+res://fire_flower.gd
