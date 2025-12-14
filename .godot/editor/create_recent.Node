@@ -1,3 +1,4 @@
+AudioStreamPlayer
 Button
 AnimationPlayer
 Label
@@ -11,4 +12,3 @@ Parallax2D
 ProgressBar
 Marker2D
 AnimatedSprite2D
-CanvasLayer

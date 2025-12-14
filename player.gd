@@ -14,7 +14,7 @@ const JUMP_VELOCITY = -400.0
 var shoot = preload("res://shoot.tscn")
 var screen_limit_horizontal:int
 
-var hp := 1
+var hp := 5
 var direction:int = 0
 var is_jumping:bool = false
 var is_falling:bool = false
@@ -42,10 +42,12 @@ func adicionar_moeda():
 	print(Global.coins)
 	
 func crescer():
+	$upgrade.play()
 	var tween := get_tree().create_tween()
 	tween.tween_property(self,"scale",Vector2(1.5,1.5),1)
 	
 func pode_atirar():
+	$upgrade.play()
 	can_shoot = true
 
 func _ready() -> void:
@@ -64,6 +66,7 @@ func perder_vida():
 		get_tree().change_scene_to_file("res://morte.tscn")
 	else:
 		var tween:= get_tree().create_tween()
+		$damage.play()
 		var tween_knockback := get_tree().create_tween().set_parallel()
 		tween.tween_property(self, "velocity", Vector2(-100,-80), 0.6)
 		tween.tween_property(self, "modulate", Color.RED, 0.5)
@@ -78,6 +81,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
 	if Input.is_action_just_pressed("atacking") and can_shoot:
+		$shoot.play()
 		var new_shoot = shoot.instantiate()
 		if sprite_2d.flip_h:
 			new_shoot.direction = -1
@@ -87,6 +91,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().root.add_child(new_shoot)
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		$jump.play()
 		is_jumping = true
 		velocity.y = JUMP_VELOCITY
 

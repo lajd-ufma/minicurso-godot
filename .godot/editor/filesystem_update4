@@ -1,17 +1,4 @@
-res://shoot.tscn
-res://world_02.tscn
-res://shoot.gd
 res://player.tscn
 res://player.gd
-res://enemie.tscn
-res://enemie.gd
-res://menu.tscn
-res://menu.gd
 res://enemie_patrol.tscn
 res://enemie_patrol.gd
-res://morte.tscn
-res://morte.gd
-res://world.tscn
-res://Global.gd
-res://world.gd
-res://world_02.gd

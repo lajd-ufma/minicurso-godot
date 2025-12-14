@@ -3,10 +3,14 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 var direction:int = 0
+
+signal tomou_dano
+
 @onready var wall_detector: RayCast2D = $wall_detector
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _ready() -> void:
+	tomou_dano.connect(perder_vida)
 	await get_tree().create_timer(1).timeout
 	$AnimationPlayer.play("walking")
 	direction = -1

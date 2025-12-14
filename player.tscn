@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://udj562gf7n42"]
+[gd_scene load_steps=22 format=3 uid="uid://udj562gf7n42"]
 
 [ext_resource type="Script" uid="uid://bccu8dtpqu8ga" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://f1sqr6udkqke" path="res://assets/Main Characters/Lil Wiz/Idle_(32 x 32).png" id="2_2hs0m"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dobtnl7ddlx57" path="res://assets/Main Characters/Lil Wiz/Jumping_(32 x 32).png" id="4_dw050"]
 [ext_resource type="Texture2D" uid="uid://cudmet2lc1gj7" path="res://assets/Main Characters/Lil Wiz/Running_(32 x 32).png" id="5_b26j0"]
 [ext_resource type="Texture2D" uid="uid://b1w4q2tfn7cpm" path="res://assets/Gold Coin/01.png" id="6_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://bs0akagw63mnb" path="res://assets/Sounds/jump.mp3" id="7_1jxqw"]
+[ext_resource type="AudioStream" uid="uid://beypkasxh8omr" path="res://assets/Sounds/shoot.mp3" id="8_n7ghd"]
+[ext_resource type="AudioStream" uid="uid://bedvvyy4ncx8j" path="res://assets/Sounds/upgrade.mp3" id="9_nvl01"]
+[ext_resource type="AudioStream" uid="uid://dwb3wvrruvavv" path="res://assets/Sounds/damage.mp3" id="10_ivps1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
 size = Vector2(24, 28)
@@ -298,5 +302,21 @@ position = Vector2(16, 16)
 
 [node name="l_spell_point" type="Marker2D" parent="."]
 position = Vector2(-16, 16)
+
+[node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_1jxqw")
+volume_db = -20.0
+
+[node name="shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_n7ghd")
+volume_db = -20.0
+
+[node name="upgrade" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_nvl01")
+volume_db = -20.0
+
+[node name="damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ivps1")
+volume_db = -20.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
