@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpi5p8pb675r7"]
+
+[ext_resource type="Script" uid="uid://c217s7v0f2mv8" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="Texture2D" uid="uid://dv8rcggqe8ffh" path="res://assets/Terrain/1 - Grassland/Background parts/5 - Sky_color.png" id="2_l48gv"]
+[ext_resource type="Texture2D" uid="uid://10e76brkq8ns" path="res://assets/Terrain/1 - Grassland/Background parts/4 - Cloud_cover_2.png" id="3_ecwwl"]
+[ext_resource type="Texture2D" uid="uid://bwepa6jlya8gk" path="res://assets/Terrain/1 - Grassland/Background parts/2 - Hills.png" id="4_kk3ma"]
+[ext_resource type="Texture2D" uid="uid://bnidqtdwa4xfj" path="res://assets/Terrain/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="5_nrnbx"]
+[ext_resource type="Texture2D" uid="uid://1swywk72kcev" path="res://assets/Terrain/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="6_iqepy"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="background" type="Node2D" parent="."]
+position = Vector2(0, 120)
+
+[node name="sky" type="Parallax2D" parent="background"]
+repeat_size = Vector2(1024, 0)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(2048, 10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="background/sky"]
+position = Vector2(512, 239.99998)
+scale = Vector2(3.5555556, 3.3846152)
+texture = ExtResource("2_l48gv")
+
+[node name="fog" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-30, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/fog"]
+position = Vector2(288, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ecwwl")
+
+[node name="hills" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(576, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/hills"]
+visible = false
+position = Vector2(288, 352)
+scale = Vector2(2, 2)
+texture = ExtResource("4_kk3ma")
+
+[node name="florest" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(576, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/florest"]
+position = Vector2(288, 400)
+scale = Vector2(2, 2)
+texture = ExtResource("5_nrnbx")
+
+[node name="clouds" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/clouds"]
+position = Vector2(288, 216)
+scale = Vector2(2, 2)
+texture = ExtResource("6_iqepy")
+
+[node name="start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 344.0
+offset_right = 568.0
+offset_bottom = 419.0
+theme_override_font_sizes/font_size = 48
+text = "Start"
+
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]

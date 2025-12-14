@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://udj562gf7n42"]
+[gd_scene load_steps=18 format=3 uid="uid://udj562gf7n42"]
 
 [ext_resource type="Script" uid="uid://bccu8dtpqu8ga" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://f1sqr6udkqke" path="res://assets/Main Characters/Lil Wiz/Idle_(32 x 32).png" id="2_2hs0m"]
@@ -225,6 +225,14 @@ _data = {
 [sub_resource type="Theme" id="Theme_sweqy"]
 default_font_size = 32
 
+[sub_resource type="Theme" id="Theme_2hs0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jxqw"]
+bg_color = Color(1, 0, 0.12156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw050"]
+bg_color = Color(0.2, 1, 0.36078432, 1)
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_sweqy")
@@ -251,12 +259,6 @@ limit_right = 2048
 limit_bottom = 720
 editor_draw_limits = true
 
-[node name="r_spell_point" type="Marker2D" parent="."]
-position = Vector2(16, 16)
-
-[node name="l_spell_point" type="Marker2D" parent="."]
-position = Vector2(-16, 16)
-
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -278,5 +280,23 @@ text = "0x"
 position = Vector2(904, 64)
 scale = Vector2(3, 3)
 texture = ExtResource("6_2hs0m")
+
+[node name="hp_bar" type="ProgressBar" parent="ui/CanvasLayer"]
+offset_left = 896.0
+offset_top = 88.0
+offset_right = 976.0
+offset_bottom = 107.0
+theme = SubResource("Theme_2hs0m")
+theme_override_styles/background = SubResource("StyleBoxFlat_1jxqw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dw050")
+max_value = 5.0
+value = 5.0
+show_percentage = false
+
+[node name="r_spell_point" type="Marker2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="l_spell_point" type="Marker2D" parent="."]
+position = Vector2(-16, 16)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

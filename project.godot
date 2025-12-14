@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Minicurso Godot LAJD"
-run/main_scene="uid://byaahtqvipkrh"
+run/main_scene="uid://bpi5p8pb675r7"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://tq5uqrofuohm"
 
 [autoload]
 
@@ -23,6 +23,7 @@ Global="*res://Global.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -62,6 +63,7 @@ atacking={
 2d_physics/layer_2="world"
 2d_physics/layer_3="items"
 2d_physics/layer_4="enemies"
+2d_physics/layer_5="shoot"
 
 [rendering]
 

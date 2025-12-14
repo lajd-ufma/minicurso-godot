@@ -7,14 +7,21 @@ const JUMP_VELOCITY = -400.0
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var label_coins: Label = $ui/CanvasLayer/coins
+@onready var r_spell_point: Marker2D = $r_spell_point
+@onready var l_spell_point: Marker2D = $l_spell_point
+@onready var hp_bar: ProgressBar = $ui/CanvasLayer/hp_bar
+
+var shoot = preload("res://shoot.tscn")
 var screen_limit_horizontal:int
 
+var hp := 1
 var direction:int = 0
 var is_jumping:bool = false
 var is_falling:bool = false
 
 var can_shoot:bool = false
 
+signal tomou_dano
 signal coletou_moeda
 signal coletou_cogumelo
 signal coletou_fireflower
@@ -44,9 +51,23 @@ func pode_atirar():
 func _ready() -> void:
 	label_coins.text = str(Global.coins)+"x"
 	screen_limit_horizontal = $Camera2D.limit_right-32
+	
+	tomou_dano.connect(perder_vida)
 	coletou_moeda.connect(adicionar_moeda)
 	coletou_cogumelo.connect(crescer)
 	coletou_fireflower.connect(pode_atirar)
+
+func perder_vida():
+	hp-=1
+	hp_bar.value = hp
+	if hp<=0:
+		get_tree().change_scene_to_file("res://morte.tscn")
+	else:
+		var tween:= get_tree().create_tween()
+		var tween_knockback := get_tree().create_tween().set_parallel()
+		tween.tween_property(self, "velocity", Vector2(-100,-80), 0.6)
+		tween.tween_property(self, "modulate", Color.RED, 0.5)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.5)
 	
 func _process(delta: float) -> void:
 	set_animation()
@@ -57,7 +78,13 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
 	if Input.is_action_just_pressed("atacking") and can_shoot:
-		print("atacck")
+		var new_shoot = shoot.instantiate()
+		if sprite_2d.flip_h:
+			new_shoot.direction = -1
+			new_shoot.global_position = l_spell_point.global_position
+		else:
+			new_shoot.global_position = r_spell_point.global_position
+		get_tree().root.add_child(new_shoot)
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		is_jumping = true
